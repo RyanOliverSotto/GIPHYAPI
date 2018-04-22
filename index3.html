@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta author="Ryan Oliver Sotto">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>LAST MEAL</title>
+</head>
+<body>
+<div class = "container">
+    <div class="jumbotron">
+        <h1>LAST MEAL</h1>
+        <p>Foods I would eat on my last day on Earth.</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">Click these foods!</div>
+                <div class="panel-body" id="buttonSection"></div>
+            </div>
+        </div><!--End div lg 8-->
+        <div class="col-lg-4" id="formSubmit">
+            <div class="panel panel-default">
+                <div class="panel-heading">What is your LAST MEAL?</div>
+                <div class="panel-body" id="formSection">
+                        <div>
+                          <input id="inputMeal" class="input-lg">
+                        </div>
+                        <button id="formSubmit" type="submit" class="btn btn-default btn-lg">Submit</button>
+                      </form>
+
+                </div> <!--End formSection-->
+            </div>
+        </div><!--End div lg 4-->
+    </div> 
+</div><!--End container-->
+<script text="javascript text">
+/*Start Psuedocode
+For week06 project we will be creating an array which we will use to populate a row of buttons
+These buttons when clicked will use AJAX to dynamically create 10 returns from GIPHY based
+on the inputs associated with each button.
+The images returned will be still.
+The user will need to click the images to toggle whether or not the GIF is animated or still.
+There is an option to add additional items to the array and display that to the html.
+End Pseudocode */
+
+// Starting array of meals
+let  meals = [
+"lobster",
+"Miller Lite", 
+"barbeque", 
+"pancit",
+"prime rib",
+"sushi",
+"cheesecake",
+"McRib",
+"red wine",
+"short rib",
+"ice cream",
+"deep dish pizza",
+"korean bbq",
+"gummy bears",
+"crab",
+"clam",
+"pho"
+];
+
+$( document ).ready(function() {
+
+renderButtons();
+
+
+// Function for displaying the array
+function renderButtons() {
+// Deleting the content prior to adding new content
+// (this is necessary otherwise you will have repeat buttons)
+$("#buttonSection").empty();
+// Looping through the array of movies
+for (let i = 0; i < meals.length; i++) {
+  // Then dynamicaly generating buttons for each movie in the array
+  // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+  let a = $("<button>");
+  // Adding a class of movie-btn to our button
+  a.addClass("mealBtn");
+  // Adding a data-attribute
+  a.attr("mealName", meals[i]);
+  // Providing the initial button text
+  a.text(meals[i]);
+  // Adding the button to the buttons-view div
+  $("#buttonSection").append(a);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});//End document ready
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//}); //End document.ready
+
+
+</script>
+</body>
+
+
+
+
+</html>
