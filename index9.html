@@ -130,65 +130,53 @@
                 };
             });
 
-            $("body").on("click", ".mealBtn", function () {
-                //alert("I was clicked!");
-                $("#gifSection").empty();
-                console.log("Button Value:", $(this).attr("value"));
-                console.log("Meal Name:", $(this).attr("mealName"));
-                const apiKey = "&api_key=dc6zaTOxFJmzC&limit=10";
-                let queryURL = "https://api.giphy.com/v1/gifs/search?q="
-                let meal = $(this).attr("mealName");
-                queryURL += meal;
-                queryURL += apiKey;
-                console.log("QueryURL", queryURL);
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
+            $("body").on("click", ".mealBtn", function(){
+            //alert("I was clicked!");
+            $("#gifSection").empty();
+            console.log("Button Value:", $(this).attr("value"));
+            console.log("Meal Name:", $(this).attr("mealName")); 
+            const apiKey ="&api_key=dc6zaTOxFJmzC&limit=10";
+            let queryURL ="https://api.giphy.com/v1/gifs/search?q="
+            let meal = $(this).attr("mealName");
+            queryURL+=meal;
+            queryURL+=apiKey;
+            console.log("QueryURL",queryURL) ;   
+            $.ajax({
+            url: queryURL,
+            method: "GET"
+            }).then(function(response) {
 
-                    console.log(response);
-                    console.log("Size of the array: ", meals.length);
-                    for (let i = 0; i < response.data.length; i++) {
-                        //  console.log(i+ " " + meals[i] + "_____________________________________________________");
-                        //   console.log("Animated: ",response.data[i].images.fixed_width.url);
-                        //  console.log("Still ",response.data[i].images.fixed_width_still.url);
-                        //   console.log("_____________________________________________________");
-
-                        let mealDiv = $("<div>");
-                        let rating = response.data[i].rating;
-                        let p = $("<p>").text("Rating: " + rating);
-                        // Gets the animated gif URL
-                        let active = response.data[i].images.fixed_width.url;
-                        // Gets the still gif URL
-                        let still = response.data[i].images.fixed_width_still.url;
-                        let mealImg = $("<img>");
-                        mealImg.attr("src", still);
-                        mealImg.attr("class", "gif");
-                        mealImg.attr("state", "still");
-                        mealImg.attr("dataStill", still);
-                        mealImg.attr("dataAnimate", active);
-                        mealDiv.prepend(p, mealImg);
-                        mealDiv.append(mealImg);
-                        $("#gifSection").append(mealDiv);
-                    }//End for Loop
-                });//End Function Response
+            console.log(response); 
+            console.log("Size of the array: ",meals.length);    
+            for (let i = 0; i < response.data.length; i++){
+             //  console.log(i+ " " + meals[i] + "_____________________________________________________");
+            //   console.log("Animated: ",response.data[i].images.fixed_width.url);
+            //  console.log("Still ",response.data[i].images.fixed_width_still.url);
+            //   console.log("_____________________________________________________");
+             
+            let mealDiv = $("<div>");
+            let rating = response.data[i].rating; 
+            let p = $("<p>").text("Rating: " + rating);
+            // Gets the animated gif URL
+             let active = response.data[i].images.fixed_width.url;
+             // Gets the still gif URL
+             let still = response.data[i].images.fixed_width_still.url;
+             let mealImg = $("<img>");
+             mealImg.attr("src", still);
+             mealImg.attr("class","gif");
+             mealImg.attr("state","still");
+             mealImg.attr("dataStill", still);
+             mealImg.attr("dataAnimate",active);
+             mealDiv.prepend(p, mealImg);
+             mealDiv.append(mealImg);
+             $("#gifSection").append(mealDiv);  
+            }//End for Loop
+            });//End Function Response
             });//End AJAX call
 
-            $("body").on("click", ".gif", function (){
-                //alert("I was clicked");
-                // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-                var state = $(this).attr("state");
-                // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-                // Then, set the image's data-state to animate
-                // Else set src to the data-still value
-                if (state === "still") {
-                    $(this).attr("src", $(this).attr("dataAnimate"));
-                    $(this).attr("state", "animate");
-                } else {
-                    $(this).attr("src", $(this).attr("dataStill"));
-                    $(this).attr("state", "still");
-                }
-            }); 
+            
+
+
         });//End document ready
 
 
