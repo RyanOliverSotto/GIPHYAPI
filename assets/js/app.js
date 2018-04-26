@@ -65,10 +65,10 @@ $(document).ready(function () {
         if (newMeal.length > 0) { //Prevent null meals from being pushed into the array
             // Adding meal from the textbox to our array
             meals.push(newMeal);
-            $("#inputMeal").text = "";
+            //$("#inputMeal").text = "";
+            $("#inputMeal").val("");
             // Calling renderButtons which handles the processing of our meal array
             renderButtons();
-
         };//end If
     });//End Submit click
 
